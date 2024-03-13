@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0 50px;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            outline: none;
+            background-color: beige;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="current-locale">{{demo.current}} : {{currentLocale}}</h1>
+        <h1 class="locale-demo">{{demo.hello}}</h1>
+        <div class="button-group">
+            <button id="en">Change languages en</button>
+            <button id="vn">Change languages vn</button>
+        </div>
+    </div>
+</body>
+    <script>
+        const setCookie = (
+            name,
+            value,
+            daysToExpire = 365,
+            path = '/',
+            ) => {
+            const expirationDate = new Date()
+            expirationDate.setDate(expirationDate.getDate() + daysToExpire)
+
+            const cookieValue =
+                encodeURIComponent(value) +
+                (daysToExpire ? `; expires=${expirationDate.toUTCString()}` : '')
+            document.cookie = `${name}=${cookieValue}; path=${path}`
+        }
+
+        const getCookie = (name) => {
+            const cookieString = document.cookie
+            const cookies = cookieString.split('; ')
+
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].split('=')
+                const cookieName = cookie[0]
+                const cookieValue = cookie[1]
+
+                if (cookieName === name) {
+                return decodeURIComponent(cookieValue)
+                }
+            }
+
+            return null
+        }
+        const searchQuey = new URLSearchParams(window.location.search)
+        document.getElementById('en').onclick = () => {
+            const locale = getCookie('locale')
+            console.log(locale);
+            if (locale === 'en') return
+            setCookie('locale','en')
+            window.location.reload()
+        }
+
+        document.getElementById('vn').onclick = () => {
+            const locale = getCookie('locale')
+            console.log(locale);
+            if (locale === 'vn') return
+            setCookie('locale','vn')
+            window.location.reload()
+        }
+    </script>
+</html>
