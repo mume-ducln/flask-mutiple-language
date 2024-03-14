@@ -36,8 +36,14 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="current-locale">{{demo.current}} : {{currentLocale}}</h1>
-        <h1 class="locale-demo">{{demo.hello}}</h1>
+        <h1 class="current-locale">
+            {{
+                t('demo.current', {
+                'language': t('demo.locale')    
+                })
+            }}
+        </h1>
+        <h1 class="locale-demo">{{locales.demo}}</h1>
         <div class="button-group">
             <button id="en">Change languages en</button>
             <button id="vn">Change languages vn</button>

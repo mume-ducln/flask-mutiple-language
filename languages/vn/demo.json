@@ -1,4 +1,5 @@
 {
     "hello":"Xin chào",
-    "current":"Ngôn ngữ hiện tại"
+    "current":"Ngôn ngữ hiện tại {language}",
+    "locale": "Việt Nam"
 }

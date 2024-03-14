@@ -1,4 +1,5 @@
 {
     "hello":"Hello",
-    "current":"Current Language"
+    "current":"Current Language: {language}",
+    "locale": "English"
 }
